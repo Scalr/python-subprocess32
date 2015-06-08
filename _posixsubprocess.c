@@ -7,6 +7,10 @@
 #if defined(HAVE_PIPE2) && !defined(_GNU_SOURCE)
 # define _GNU_SOURCE
 #endif
+/* CentOS 5 doesn't have pipe2 with it's libc v2.5 */
+#ifndef O_CLOEXEC
+# undef HAVE_PIPE2
+#endif
 #include <unistd.h>
 #include <fcntl.h>
 #ifdef __linux__
